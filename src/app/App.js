@@ -1,12 +1,11 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import HomePage from "../Pages/HomePage";
+import Pages from "./Pages";
 
 function App() {
   return (
-    <Routes>
-      <Route index element={<HomePage />} />
-    </Routes>
+    <>
+      <Pages />
+    </>
   );
 }
 
