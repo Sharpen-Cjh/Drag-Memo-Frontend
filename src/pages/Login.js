@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
 
 import axiosInstance from "../api/axios";
 import { ERROR } from "../constants/error";
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -25,6 +25,8 @@ export default function Login() {
         username: displayName,
         googleId: localId,
       });
+
+      console.log(status);
 
       status === 200 ? navigate("/") : setErrorMessage(ERROR.FAIL_LOGIN);
     } catch (error) {
