@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
-import { auth } from "../config/firebase";
+import { auth, redirectToLogin } from "../config/firebase";
 import { UserContext } from "../context/userContext";
-
+import axiosInstance from "../api/axios";
 import { ERROR } from "../constants/error";
+
+import { Button } from "../ui/button";
+import SearchBar from "./SearchBar";
 
 export default function NavBar() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -25,18 +28,51 @@ export default function NavBar() {
     }
   };
 
+  const handleCreate = () => {
+    onAuthStateChanged(auth, async (user) => {
+      try {
+        if (user) {
+          const googleId = user?.reloadUserInfo.localId;
+          const {
+            status,
+            data: {
+              data: { _id },
+            },
+          } = await axiosInstance.post(`/users/${googleId}/memo`);
+          status === 201
+            ? navigate(`/memos/${_id}`)
+            : setErrorMessage(ERROR.FAIL_CREATE_MEMO);
+        } else {
+          redirectToLogin();
+        }
+      } catch (error) {
+        setErrorMessage(error);
+      }
+    });
+  };
+
   return (
     <NavBarWrapper>
-      <Button onClick={handleLogOut}>Log out</Button>
-      <div>{errorMessage}</div>
+      <NavBarButtonWrapper>
+        <CreateButton onClick={handleCreate}>Create</CreateButton>
+        <div>{errorMessage}</div>
+        <LogOutButton onClick={handleLogOut}>Log out</LogOutButton>
+      </NavBarButtonWrapper>
+      <SearchBar />
     </NavBarWrapper>
   );
 }
 
 const NavBarWrapper = styled.div`
-  display: flex;
+  width: 100%;
 `;
 
-const Button = styled.button`
-  border: 1px solid black;
+const NavBarButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
+
+const LogOutButton = styled(Button)``;
+
+const CreateButton = styled(Button)``;
