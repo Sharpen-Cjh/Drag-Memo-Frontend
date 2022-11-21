@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function MemoCard() {
+export default function MemoCard({ title, description, handleClick }) {
   return (
-    <MemoCardWrapper>
-      <MemoTitle>자바스크립트</MemoTitle>
-      <MemoDescription>자바스크립트란 프로그래밍 언어이다.</MemoDescription>
+    <MemoCardWrapper onClick={handleClick}>
+      <MemoTitle>{title}</MemoTitle>
+      <MemoDescription>{description}</MemoDescription>
     </MemoCardWrapper>
   );
 }
