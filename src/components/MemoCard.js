@@ -38,10 +38,14 @@ const MemoTitle = styled.div`
 `;
 
 const MemoDescription = styled.div`
-  width: 100%
+  width: 250px;
   height: 90%
   font-size: 10px;
   margin-top: 20px;
+  -webkit-line-clap:5;
+  -webkit-box-orient:vertical; 
+  overflow:hidden;
+  text-overflow:ellipsis;
 
 `;
 

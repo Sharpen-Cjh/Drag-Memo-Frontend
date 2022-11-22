@@ -102,7 +102,7 @@ const MemoContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 800px;
-  height: 800px;
+  height: 600px;
   border: 5px solid #0d6efd;
 
   border-radius: 20px;

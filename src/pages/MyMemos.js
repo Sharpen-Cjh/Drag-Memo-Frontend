@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import NavBar from "../components/NavBar";
+import SearchBar from "../components/SearchBar";
 import MemoCard from "../components/MemoCard";
 import axiosInstance from "../api/axios";
 
@@ -12,12 +13,17 @@ export default function MyMemos() {
   const navigate = useNavigate();
   const [myMemos, setMyMemos] = useState([]);
   const [errorMessage, setErrorMessage] = useState([]);
+  const [searchMemoTitle, setSearchMemoTitle] = useState("");
 
   const {
     loggedInUser: {
       reloadUserInfo: { localId },
     },
   } = useContext(UserContext);
+  const handleSearchTerm = (event) => {
+    setSearchMemoTitle(event.target.value);
+    console.log(searchMemoTitle);
+  };
 
   useEffect(() => {
     const getMyMemos = async () => {
@@ -40,35 +46,48 @@ export default function MyMemos() {
     <MyMemosWrapper>
       <div>{errorMessage}</div>
       <NavBar />
+      <SearchBar
+        handleSearchTerm={handleSearchTerm}
+        searchInputValue={searchMemoTitle}
+      />
       <MemoCardContainer>
-        {myMemos.map((memo) => {
-          return (
-            <MemoCard
-              key={memo._id}
-              title={memo.title}
-              description={memo.description}
-              handleShowMemo={() => navigate(`/memos/${memo._id}`)}
-              handleDeleteMemo={async (event) => {
-                try {
-                  event.stopPropagation();
-                  const confirmCheck = window.confirm(
-                    "Do you want to delete?Once deleted, restoration is not possible"
-                  );
-                  if (confirmCheck) {
-                    await axiosInstance.delete(
-                      `/users/${localId}/memos/${memo._id}`
+        {myMemos
+          .filter((memo) => {
+            if (searchMemoTitle === "") {
+              return memo;
+            } else if (memo.title.includes(searchMemoTitle)) {
+              return memo;
+            }
+            return "";
+          })
+          .map((memo) => {
+            return (
+              <MemoCard
+                key={memo._id}
+                title={memo.title}
+                description={memo.description}
+                handleShowMemo={() => navigate(`/memos/${memo._id}`)}
+                handleDeleteMemo={async (event) => {
+                  try {
+                    event.stopPropagation();
+                    const confirmCheck = window.confirm(
+                      "Do you want to delete?Once deleted, restoration is not possible"
                     );
-                    window.location.replace("/");
+                    if (confirmCheck) {
+                      await axiosInstance.delete(
+                        `/users/${localId}/memos/${memo._id}`
+                      );
+                      window.location.replace("/");
 
-                    return;
+                      return;
+                    }
+                  } catch (error) {
+                    setErrorMessage(error);
                   }
-                } catch (error) {
-                  setErrorMessage(error);
-                }
-              }}
-            />
-          );
-        })}
+                }}
+              />
+            );
+          })}
       </MemoCardContainer>
     </MyMemosWrapper>
   );
