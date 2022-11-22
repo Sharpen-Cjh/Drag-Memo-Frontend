@@ -9,7 +9,6 @@ import axiosInstance from "../api/axios";
 import { ERROR } from "../constants/error";
 
 import { Button } from "../ui/button";
-import SearchBar from "./SearchBar";
 
 export default function NavBar() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -58,7 +57,6 @@ export default function NavBar() {
         <div>{errorMessage}</div>
         <LogOutButton onClick={handleLogOut}>Log out</LogOutButton>
       </NavBarButtonWrapper>
-      <SearchBar />
     </NavBarWrapper>
   );
 }
