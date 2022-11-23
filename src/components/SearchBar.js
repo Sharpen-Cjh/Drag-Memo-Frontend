@@ -13,7 +13,7 @@ export default function SearchBar({ handleSearchTerm, searchInputValue }) {
       <SearchBarInput
         onChange={handleSearchInput}
         value={searchInputValue}
-        placeholder="메모 제목을 검색해보세요"
+        placeholder="메모 제목을 검색하세요"
       />
       <SearchBarButton>Search</SearchBarButton>
     </SearchBarWrapper>
