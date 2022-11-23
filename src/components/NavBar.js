@@ -1,18 +1,21 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-
-import { auth, redirectToLogin } from "../config/firebase";
 import { UserContext } from "../context/userContext";
+
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth, redirectToLogin } from "../config/firebase";
+
 import axiosInstance from "../api/axios";
+
 import { ERROR } from "../constants/error";
 
+import styled from "styled-components";
 import { Button } from "../ui/button";
 
 export default function NavBar() {
   const [errorMessage, setErrorMessage] = useState("");
   const { setLoggedInUser } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
@@ -45,7 +48,7 @@ export default function NavBar() {
           redirectToLogin();
         }
       } catch (error) {
-        setErrorMessage(error);
+        setErrorMessage(ERROR.FAIL_CREATE_MEMO);
       }
     });
   };
@@ -60,7 +63,6 @@ export default function NavBar() {
     </NavBarWrapper>
   );
 }
-
 const NavBarWrapper = styled.div`
   width: 100%;
 `;

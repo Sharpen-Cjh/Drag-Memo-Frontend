@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
+import { UserContext } from "../context/userContext";
 
 import axiosInstance from "../api/axios";
 
-import { UserContext } from "../context/userContext";
-
 import { ERROR } from "../constants/error";
+import { MESSAGE } from "../constants/message";
+
+import styled from "styled-components";
 import { Button } from "../ui/button";
 
 export default function Memo() {
@@ -15,7 +16,7 @@ export default function Memo() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
-  const params = useParams();
+  const { memoId } = useParams();
 
   const {
     loggedInUser: {
@@ -25,11 +26,11 @@ export default function Memo() {
 
   const handleSaveAndClose = async () => {
     if (!memoTitle) {
-      return alert("제목을 작성해주세요");
+      return alert(MESSAGE.ALERT_INPUT_MEMO_TITLE);
     }
     try {
       const { status } = await axiosInstance.patch(
-        `/users/${localId}/memos/${params.memoId}`,
+        `/users/${localId}/memos/${memoId}`,
         {
           title: memoTitle,
           description: memoDescription,
@@ -53,7 +54,7 @@ export default function Memo() {
     const getMemo = async () => {
       try {
         const response = await axiosInstance.get(
-          `users/${localId}/memos/${params.memoId}`
+          `users/${localId}/memos/${memoId}`
         );
         const { memo } = response.data;
         const { title, description } = memo;
@@ -67,7 +68,7 @@ export default function Memo() {
     if (localId) {
       getMemo();
     }
-  }, [localId, params.memoId]);
+  }, [localId, memoId]);
 
   return (
     <MemoWrapper>
@@ -76,6 +77,7 @@ export default function Memo() {
         <MemoHeader>
           <MemoTitle
             className="memo-title"
+            placeholder="제목을 입력해주세요"
             onChange={handleUpdateTitle}
             value={memoTitle}
           ></MemoTitle>
@@ -83,6 +85,7 @@ export default function Memo() {
         </MemoHeader>
         <MemoDescription
           className="memo-description"
+          placeholder="내용을 입력해주세요"
           onChange={handleUpdateDescription}
           value={memoDescription}
         ></MemoDescription>
@@ -107,6 +110,7 @@ const MemoContainer = styled.div`
 
   border-radius: 20px;
 `;
+
 const MemoHeader = styled.div`
   display: flex;
   flex-direction: row;
@@ -121,6 +125,7 @@ const MemoTitle = styled.input`
   font-size: 30px;
   border: none;
 `;
+
 const MemoCloseButton = styled(Button)`
   height: 40px;
 `;
@@ -130,4 +135,5 @@ const MemoDescription = styled.textarea`
   padding: 10px;
   font-size: 20px;
   border: none;
+  resize: none;
 `;

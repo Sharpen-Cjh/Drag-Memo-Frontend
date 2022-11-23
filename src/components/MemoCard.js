@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 
 import { Button } from "../ui/button";
+import styled from "styled-components";
 
 export default function MemoCard({
   title,
@@ -19,7 +19,6 @@ export default function MemoCard({
     </MemoCardWrapper>
   );
 }
-
 const MemoCardWrapper = styled.div`
   display: flex;
   height: 250px;
@@ -28,6 +27,11 @@ const MemoCardWrapper = styled.div`
   padding: 10px;
   border: 1px solid #0d6efd;
   border-radius: 10px;
+`;
+
+const MemoCardHeader = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const MemoTitle = styled.div`
@@ -43,7 +47,7 @@ const MemoDescription = styled.div`
   font-size: 10px;
   margin-top: 20px;
   -webkit-line-clap:5;
-  -webkit-box-orient:vertical; 
+  -webkit-box-orient:vertical;
   overflow:hidden;
   text-overflow:ellipsis;
 
@@ -52,9 +56,4 @@ const MemoDescription = styled.div`
 const MemoDeleteButton = styled(Button)`
   width: 80px;
   height: 30px;
-`;
-
-const MemoCardHeader = styled.div`
-  display: flex;
-  flex-direction: row;
 `;

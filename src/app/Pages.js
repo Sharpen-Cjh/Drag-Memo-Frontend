@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { UserContext } from "../context/userContext";
 
 import MyMemos from "../pages/MyMemos";
 import Login from "../pages/Login";
 import NotFound from "../components/NotFound";
 import Memo from "../pages/Memo";
-
-import { UserContext } from "../context/userContext";
 
 export default function Pages() {
   const { loggedInUser } = useContext(UserContext);

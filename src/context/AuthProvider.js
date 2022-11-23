@@ -3,6 +3,7 @@ import { UserContext } from "./userContext";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase";
+
 import axiosInstance from "../api/axios";
 
 export const AuthProvider = ({ children }) => {
