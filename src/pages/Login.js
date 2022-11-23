@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../config/firebase";
-import { useNavigate } from "react-router-dom";
 
 import axiosInstance from "../api/axios";
+
 import { ERROR } from "../constants/error";
+
+import styled from "styled-components";
 
 export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -26,8 +28,6 @@ export default function Login() {
         googleId: localId,
       });
 
-      console.log(status);
-
       status === 200 ? navigate("/") : setErrorMessage(ERROR.FAIL_LOGIN);
     } catch (error) {
       setErrorMessage(ERROR.FAIL_LOGIN);
@@ -41,7 +41,6 @@ export default function Login() {
     </LoginButtonWrapper>
   );
 }
-
 const LoginButton = styled.button`
   width: 300px;
   height: 200px;

@@ -1,4 +1,5 @@
 import React from "react";
+
 import styled from "styled-components";
 import { Button } from "../ui/button";
 
@@ -12,13 +13,12 @@ export default function SearchBar({ handleSearchTerm, searchInputValue }) {
       <SearchBarInput
         onChange={handleSearchInput}
         value={searchInputValue}
-        placeholder="Search title"
+        placeholder="메모 제목을 검색해보세요"
       />
       <SearchBarButton>Search</SearchBarButton>
     </SearchBarWrapper>
   );
 }
-
 const SearchBarWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -33,4 +33,5 @@ const SearchBarInput = styled.input`
   outline: none;
   width: 300px;
 `;
+
 const SearchBarButton = styled(Button)``;

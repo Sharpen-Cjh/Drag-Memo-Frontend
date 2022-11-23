@@ -1,16 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/userContext";
 
 import NavBar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
 import MemoCard from "../components/MemoCard";
+
 import axiosInstance from "../api/axios";
 
-import { UserContext } from "../context/userContext";
-import { useNavigate } from "react-router-dom";
+import { MESSAGE } from "../constants/message";
+
+import styled from "styled-components";
 
 export default function MyMemos() {
   const navigate = useNavigate();
+
   const [myMemos, setMyMemos] = useState([]);
   const [errorMessage, setErrorMessage] = useState([]);
   const [searchMemoTitle, setSearchMemoTitle] = useState("");
@@ -20,9 +24,9 @@ export default function MyMemos() {
       reloadUserInfo: { localId },
     },
   } = useContext(UserContext);
+
   const handleSearchTerm = (event) => {
     setSearchMemoTitle(event.target.value);
-    console.log(searchMemoTitle);
   };
 
   useEffect(() => {
@@ -71,7 +75,7 @@ export default function MyMemos() {
                   try {
                     event.stopPropagation();
                     const confirmCheck = window.confirm(
-                      "Do you want to delete?Once deleted, restoration is not possible"
+                      MESSAGE.CONFIRM_DELETE_MEMO
                     );
                     if (confirmCheck) {
                       await axiosInstance.delete(
@@ -92,7 +96,6 @@ export default function MyMemos() {
     </MyMemosWrapper>
   );
 }
-
 const MyMemosWrapper = styled.div`
   display: flex;
   flex-direction: column;
