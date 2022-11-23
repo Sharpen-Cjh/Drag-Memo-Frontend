@@ -1,5 +1,6 @@
 import React from "react";
+import { MESSAGE } from "../constants/message";
 
 export default function NotFound() {
-  return <div>페이지를 찾을 수가 없습니다.</div>;
+  return <div>{MESSAGE.PAGE_NOT_FOUND}</div>;
 }
