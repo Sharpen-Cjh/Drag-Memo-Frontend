@@ -56,9 +56,9 @@ export default function NavBar() {
   return (
     <NavBarWrapper>
       <NavBarButtonWrapper>
-        <CreateButton onClick={handleCreate}>Create</CreateButton>
+        <CreateButton onClick={handleCreate}>메모 만들기</CreateButton>
         <div>{errorMessage}</div>
-        <LogOutButton onClick={handleLogOut}>Log out</LogOutButton>
+        <LogOutButton onClick={handleLogOut}>로그아웃</LogOutButton>
       </NavBarButtonWrapper>
     </NavBarWrapper>
   );

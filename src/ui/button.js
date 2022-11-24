@@ -23,4 +23,9 @@ export const Button = styled.button`
   cursor: pointer;
 
   transition: 0.5s;
+  :hover {
+    background-color: #fff;
+    color: #0d6efd;
+    border: 1px solid #0d6efd;
+  }
 `;

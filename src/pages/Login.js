@@ -36,15 +36,24 @@ export default function Login() {
 
   return (
     <LoginButtonWrapper>
-      <LoginButton onClick={handleLogin}>Login</LoginButton>
+      <LoginButton onClick={handleLogin}>Google Login</LoginButton>
       <div>{errorMessage}</div>
     </LoginButtonWrapper>
   );
 }
 const LoginButton = styled.button`
   width: 300px;
-  height: 200px;
+  height: 100px;
   font-size: 30px;
+  background-color: #0d6efd;
+  color: #fff;
+  border: 1px solid #0d6efd;
+  border-radius: 10px;
+  :hover {
+    background-color: #fff;
+    color: #0d6efd;
+    border: 1px solid #0d6efd;
+  }
 `;
 
 const LoginButtonWrapper = styled.div`

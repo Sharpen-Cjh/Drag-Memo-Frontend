@@ -15,7 +15,7 @@ export default function SearchBar({ handleSearchTerm, searchInputValue }) {
         value={searchInputValue}
         placeholder="메모 제목을 검색하세요"
       />
-      <SearchBarButton>Search</SearchBarButton>
+      <SearchBarButton>검색</SearchBarButton>
     </SearchBarWrapper>
   );
 }
@@ -34,4 +34,23 @@ const SearchBarInput = styled.input`
   width: 300px;
 `;
 
-const SearchBarButton = styled(Button)``;
+const SearchBarButton = styled.div`
+  margin: 0;
+  padding: 0.5rem 1rem;
+
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+
+  display: inline-block;
+  width: auto;
+
+  border: none;
+  border-radius: 4px;
+  background-color: #0d6efd;
+  color: #ffffff;
+
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+`;

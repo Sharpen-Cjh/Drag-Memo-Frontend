@@ -81,7 +81,9 @@ export default function Memo() {
             onChange={handleUpdateTitle}
             value={memoTitle}
           ></MemoTitle>
-          <MemoCloseButton onClick={handleSaveAndClose}>Back</MemoCloseButton>
+          <MemoCloseButton onClick={handleSaveAndClose}>
+            뒤로가기
+          </MemoCloseButton>
         </MemoHeader>
         <MemoDescription
           className="memo-description"
@@ -105,7 +107,7 @@ const MemoContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 800px;
-  height: 600px;
+  height: 800px;
   border: 5px solid #0d6efd;
 
   border-radius: 20px;

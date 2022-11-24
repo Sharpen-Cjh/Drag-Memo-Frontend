@@ -13,7 +13,7 @@ export default function MemoCard({
     <MemoCardWrapper onClick={handleShowMemo}>
       <MemoCardHeader>
         <MemoTitle>{title}</MemoTitle>
-        <MemoDeleteButton onClick={handleDeleteMemo}>Delete</MemoDeleteButton>
+        <MemoDeleteButton onClick={handleDeleteMemo}>삭제</MemoDeleteButton>
       </MemoCardHeader>
       <MemoDescription>{description}</MemoDescription>
     </MemoCardWrapper>
@@ -55,5 +55,4 @@ const MemoDescription = styled.div`
 
 const MemoDeleteButton = styled(Button)`
   width: 80px;
-  height: 30px;
 `;
