@@ -23,7 +23,8 @@ const SearchBarWrapper = styled.div`
   flex-direction: row;
   border-radius: 10px;
   padding: 2px;
-  margin-left: auto;
+  margin-top: 10px;
+  margin-right: auto;
 `;
 
 const SearchBarInput = styled.input`
@@ -34,7 +35,6 @@ const SearchBarInput = styled.input`
 `;
 
 const SearchBarButton = styled.div`
-  margin: 0;
   padding: 0.5rem 1rem;
 
   font-size: 1rem;
@@ -43,8 +43,7 @@ const SearchBarButton = styled.div`
   text-decoration: none;
 
   display: inline-block;
-  width: auto;
-
+  width: 70px;
   border: none;
   border-radius: 4px;
   background-color: #0d6efd;
