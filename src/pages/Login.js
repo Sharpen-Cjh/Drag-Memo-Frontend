@@ -35,10 +35,13 @@ export default function Login() {
   };
 
   return (
-    <LoginButtonWrapper>
-      <LoginButton onClick={handleLogin}>Google Login</LoginButton>
-      <div>{errorMessage}</div>
-    </LoginButtonWrapper>
+    <>
+      <LoginPageHeader>Hello-word!</LoginPageHeader>
+      <LoginButtonWrapper>
+        <LoginButton onClick={handleLogin}>Google Login</LoginButton>
+        <div>{errorMessage}</div>
+      </LoginButtonWrapper>
+    </>
   );
 }
 const LoginButton = styled.button`
@@ -61,4 +64,12 @@ const LoginButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+`;
+
+const LoginPageHeader = styled.div`
+  font-size: 100px;
+  color: #fff;
+  background-color: #0d6efd;
+  margin: 0;
+  text-align: center;
 `;
