@@ -9,6 +9,7 @@ import MemoCard from "../components/MemoCard";
 import axiosInstance from "../api/axios";
 
 import { MESSAGE } from "../constants/message";
+import { ERROR } from "../constants/error";
 
 import styled from "styled-components";
 
@@ -37,7 +38,7 @@ export default function MyMemos() {
 
         setMyMemos(memos);
       } catch (error) {
-        setErrorMessage(error);
+        setErrorMessage(ERROR.FAIL_GET_MY_MEMOS);
       }
     };
 
@@ -48,7 +49,7 @@ export default function MyMemos() {
 
   return (
     <MyMemosWrapper>
-      <div>{errorMessage}</div>
+      <div data-testid="error-message">{errorMessage}</div>
       <NavBar />
       <SearchBar
         handleSearchTerm={handleSearchTerm}
@@ -81,12 +82,12 @@ export default function MyMemos() {
                       await axiosInstance.delete(
                         `/users/${localId}/memos/${memo._id}`
                       );
-                      window.location.replace("/");
+                      window.location.reload();
 
                       return;
                     }
                   } catch (error) {
-                    setErrorMessage(error);
+                    setErrorMessage(ERROR.FAIL_DELETE_MEMO);
                   }
                 }}
               />
@@ -100,6 +101,7 @@ const MyMemosWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 20px;
 `;
 
 const MemoCardContainer = styled.div`

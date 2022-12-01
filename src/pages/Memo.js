@@ -80,8 +80,12 @@ export default function Memo() {
             placeholder="제목을 입력해주세요"
             onChange={handleUpdateTitle}
             value={memoTitle}
+            data-testid="memo-title"
           ></MemoTitle>
-          <MemoCloseButton onClick={handleSaveAndClose}>
+          <MemoCloseButton
+            data-testid="memo-close-button"
+            onClick={handleSaveAndClose}
+          >
             뒤로가기
           </MemoCloseButton>
         </MemoHeader>
@@ -89,6 +93,7 @@ export default function Memo() {
           className="memo-description"
           placeholder="내용을 입력해주세요"
           onChange={handleUpdateDescription}
+          data-testid="memo-description"
           value={memoDescription}
         ></MemoDescription>
       </MemoContainer>

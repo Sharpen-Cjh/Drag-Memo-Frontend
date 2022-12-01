@@ -12,10 +12,17 @@ export default function MemoCard({
   return (
     <MemoCardWrapper onClick={handleShowMemo}>
       <MemoCardHeader>
-        <MemoTitle>{title}</MemoTitle>
-        <MemoDeleteButton onClick={handleDeleteMemo}>삭제</MemoDeleteButton>
+        <MemoTitle data-testid="memo-card-title">{title}</MemoTitle>
+        <MemoDeleteButton
+          data-testid="memo-delete-button"
+          onClick={handleDeleteMemo}
+        >
+          삭제
+        </MemoDeleteButton>
       </MemoCardHeader>
-      <MemoDescription>{description}</MemoDescription>
+      <MemoDescription data-testid="memo-card-description">
+        {description}
+      </MemoDescription>
     </MemoCardWrapper>
   );
 }

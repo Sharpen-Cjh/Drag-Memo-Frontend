@@ -70,11 +70,16 @@ export default function NavBar() {
             onChange={handleCreateMemoTitleInput}
             value={createMemoTitle}
             placeholder="메모 제목을 입력하세요"
+            data-testid="memo-create-title-input"
           />
-          <CreateButton onClick={handleCreate}>메모 만들기</CreateButton>
+          <CreateButton data-testid="memo-create-button" onClick={handleCreate}>
+            메모 만들기
+          </CreateButton>
         </CreateMemoInputWrapper>
         <div>{errorMessage}</div>
-        <LogOutButton onClick={handleLogOut}>로그아웃</LogOutButton>
+        <LogOutButton data-testid="logout-button" onClick={handleLogOut}>
+          로그아웃
+        </LogOutButton>
       </NavBarButtonWrapper>
     </NavBarWrapper>
   );

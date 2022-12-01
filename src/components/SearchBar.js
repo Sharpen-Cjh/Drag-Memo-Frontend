@@ -13,8 +13,9 @@ export default function SearchBar({ handleSearchTerm, searchInputValue }) {
         onChange={handleSearchInput}
         value={searchInputValue}
         placeholder="메모 제목을 검색하세요"
+        data-testid="search-bar-input"
       />
-      <SearchBarButton>검색</SearchBarButton>
+      <SearchBarButton data-testid="search-bar-button">검색</SearchBarButton>
     </SearchBarWrapper>
   );
 }

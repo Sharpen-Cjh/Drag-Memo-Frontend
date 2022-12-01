@@ -36,9 +36,11 @@ export default function Login() {
 
   return (
     <>
-      <LoginPageHeader>Hello-word!</LoginPageHeader>
+      <LoginPageHeader data-testid="login-header">Hello-word!</LoginPageHeader>
       <LoginButtonWrapper>
-        <LoginButton onClick={handleLogin}>Google Login</LoginButton>
+        <LoginButton data-testid="login-button" onClick={handleLogin}>
+          Google Login
+        </LoginButton>
         <div>{errorMessage}</div>
       </LoginButtonWrapper>
     </>

@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
         axiosInstance.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${token}`;
-
+        console.log(user);
         setLoggedInUser(user);
       } else {
         setLoggedInUser(null);
