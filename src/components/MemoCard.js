@@ -46,6 +46,8 @@ const MemoTitle = styled.div`
   font-size: 20px;
   font-weight: 20px;
   border-radius: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const MemoDescription = styled.div`

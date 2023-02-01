@@ -92,7 +92,8 @@ export default function MyMemos() {
                 }}
               />
             );
-          })}
+          })
+          .reverse()}
       </MemoCardContainer>
     </MyMemosWrapper>
   );
